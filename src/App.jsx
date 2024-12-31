@@ -5,7 +5,6 @@ import { PDFViewer } from "@react-pdf/renderer";
 import ReactPDF from "@react-pdf/renderer";
 import PDFFile from "./components/PDFFile";
 import CVDetails from "./components/CVDetails";
-console.log("abcd");
 
 const App = () => {
   const [cvData, setCvData] = useState({
@@ -23,8 +22,7 @@ const App = () => {
   return (
     <div className="main">
       <div className="leftSide">
-        <CVDetails setCvData={setCvData}></CVDetails>
-        {console.log(cvData)}
+        <CVDetails cvData={cvData} setCvData={setCvData}></CVDetails>
       </div>
       <div className="rightSide">
         <div>
