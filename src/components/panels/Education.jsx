@@ -50,6 +50,11 @@ export default function Education({
     updateData({ education: updatedData });
   }
 
+  function handleDelete(index) {
+    const updatedData = educationData.filter((_, i) => i !== index);
+    updateData({ education: updatedData });
+  }
+
   function ListEducation() {
     const listEducation = educationData.map((education, index) => (
       <li key={crypto.randomUUID()}>
@@ -57,6 +62,7 @@ export default function Education({
         <button onClick={() => moveItem(index, -1)}>Up</button>
         <button onClick={() => moveItem(index, 1)}>Down</button>
         <button onClick={() => handleItemClick(index)}>Edit</button>
+        <button onClick={() => handleDelete(index)}>Delete</button>
       </li>
     ));
     return listEducation;
@@ -65,6 +71,7 @@ export default function Education({
   const content = () => {
     return (
       <div>
+        <h3>Add education</h3>
         <form onSubmit={handleSubmit}>
           <label>
             School:
