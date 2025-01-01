@@ -4,12 +4,10 @@ import Education from "./panels/Education";
 
 export default function CVDetails({ cvData, setCvData }) {
   const [activeIndex, setActiveIndex] = useState(0);
-
   const handleDataChange = (newData) => {
     setCvData((prevData) => ({ ...prevData, ...newData }));
   };
-  console.log("CVDETAILS UPDATE");
-  console.log(cvData);
+  //console.log(cvData);
   return (
     <>
       <PersonalInformation

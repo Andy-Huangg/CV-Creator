@@ -31,15 +31,10 @@ export default function PersonalInformation({ isActive, onShow, updateData }) {
     updateData({ [detail]: newValue });
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    updateData({ name, location, phone, email, github });
-  };
-
   const content = () => {
     return (
       <div>
-        <form onSubmit={handleSubmit}>
+        <form>
           <label>
             Name:
             <input
@@ -72,7 +67,7 @@ export default function PersonalInformation({ isActive, onShow, updateData }) {
               onChange={(e) => handleChange("location", e)}
             />
           </label>
-          <label>
+          <label className="c">
             github:
             <input
               type="text"
@@ -80,7 +75,6 @@ export default function PersonalInformation({ isActive, onShow, updateData }) {
               onChange={(e) => handleChange("github", e)}
             />
           </label>
-          <button type="submit">Submit</button>
         </form>
       </div>
     );

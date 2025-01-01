@@ -114,7 +114,7 @@ export default function Education({
             />
           </label>
           <button type="submit">
-            {editingIndex !== null ? "Finish Editing" : "Submit"}
+            {editingIndex !== null ? "Finish Editing" : "Add Education"}
           </button>
         </form>
 

@@ -8,12 +8,23 @@ import {
 } from "@react-pdf/renderer";
 import dino from "/dinosaur.png";
 
-const PDFFile = () => {
+export default function PDFFile({ data }) {
+  {
+    if (data == undefined) {
+      console.log("UNDEFINED");
+      console.log("dataw");
+      console.log(data);
+    }
+    console.log(data);
+  }
   return (
     <Document>
+      {console.log(data.name)}
       <Page size="A4" style={styles.page}>
         <View style={[styles.section, styles.view]}>
           <Text>Section #1</Text>
+
+          <Text>placeholder{data.name}</Text>
           <Image src={dino}></Image>
         </View>
         <View style={styles.section}>
@@ -22,7 +33,7 @@ const PDFFile = () => {
       </Page>
     </Document>
   );
-};
+}
 
 const styles = StyleSheet.create({
   page: {
@@ -41,5 +52,3 @@ const styles = StyleSheet.create({
     border: "1px solid black",
   },
 });
-
-export default PDFFile;
