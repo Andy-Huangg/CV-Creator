@@ -5,27 +5,24 @@ import {
   Document,
   StyleSheet,
   Image,
+  Font,
 } from "@react-pdf/renderer";
 import dino from "/dinosaur.png";
 
 export default function PDFFile({ data }) {
-  {
-    if (data == undefined) {
-      console.log("UNDEFINED");
-      console.log("dataw");
-      console.log(data);
-    }
-    console.log(data);
-  }
   return (
     <Document>
-      {console.log(data.name)}
       <Page size="A4" style={styles.page}>
-        <View style={[styles.section, styles.view]}>
-          <Text>Section #1</Text>
-
-          <Text>placeholder{data.name}</Text>
-          <Image src={dino}></Image>
+        <View style={[styles.section]}>
+          <View style={styles.name}>
+            <Text>{data.name}</Text>
+          </View>
+          <View style={styles.personalInformation}>
+            <Text>{data.email}</Text>
+            <Text>{data.phone}</Text>
+            <Text>{data.location}</Text>
+            <Text>{data.github}</Text>
+          </View>
         </View>
         <View style={styles.section}>
           <Text>Section #2</Text>
@@ -37,18 +34,28 @@ export default function PDFFile({ data }) {
 
 const styles = StyleSheet.create({
   page: {
-    flexDirection: "row",
+    display: "flex",
+    fontFamily: "Helvetica",
   },
   section: {
     margin: 10,
     padding: 10,
-    flexGrow: 1,
+    border: "1px solid black",
   },
   image: {
     width: 100,
     height: 100,
   },
-  view: {
-    border: "1px solid black",
+  name: {
+    fontWeight: "bold",
+    fontFamily: "Helvetica-Bold",
+    fontSize: "28px",
+  },
+  personalInformation: {
+    marginTop: "5px",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    fontSize: "10px",
+    flexWrap: "wrap",
   },
 });
