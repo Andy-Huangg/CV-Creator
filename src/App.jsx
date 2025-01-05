@@ -8,12 +8,20 @@ import CVDetails from "./components/CVDetails";
 
 const App = () => {
   const [cvData, setCvData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    location: "",
-    github: "",
-    education: [],
+    name: "John Smith",
+    email: "johnsmith649@gmail.com",
+    phone: "0284073446",
+    location: "Auckland, New Zealand",
+    github: "https://github.com/Andy-Huangg",
+    education: [
+      {
+        heading: "University of Auckland",
+        subHeading: "BE(Hons) in Software Engineering",
+        location: "Auckland, New Zealand",
+        date: "2023 - Present",
+        description: "Blah blah blah blah\nabcd",
+      },
+    ],
     experience: [],
     projects: [],
     skills: [],
@@ -40,7 +48,7 @@ const App = () => {
             <div className="">
               <PDFDownloadLink
                 document={<PDFFile data={cvData} />}
-                fileName="somename.pdf"
+                fileName={`${cvData.name} CV.pdf`}
               >
                 {({ blob, url, loading, error }) =>
                   loading ? null : <button>Download</button>

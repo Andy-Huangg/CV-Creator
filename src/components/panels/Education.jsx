@@ -11,7 +11,7 @@ export default function Education({
     subHeading: "",
     location: "",
     date: "",
-    description: [],
+    description: "",
   };
   const [thisEducation, setThisEducation] = useState(initialEducationState);
   const [editingIndex, setEditingIndex] = useState(null);
@@ -107,7 +107,7 @@ export default function Education({
           </label>
           <label>
             Description:
-            <input
+            <textarea
               type="text"
               value={thisEducation.description}
               onChange={(e) => handleChange("description", e)}
