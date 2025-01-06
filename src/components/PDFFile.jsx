@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   Font,
+  Link,
 } from "@react-pdf/renderer";
 
 export default function PDFFile({ data, sectionOrder }) {
@@ -73,6 +74,36 @@ export default function PDFFile({ data, sectionOrder }) {
                   <View key={crypto.randomUUID()}>
                     <View style={[styles.spaceBetween, styles.mainHeading]}>
                       <Text>{edu.heading}</Text>
+                      <Text>{edu.date}</Text>
+                    </View>
+
+                    <View style={[styles.spaceBetween, styles.subHeading]}>
+                      <Text>{edu.subHeading}</Text>
+                      <Text>{edu.location}</Text>
+                    </View>
+
+                    <Text style={styles.description}>{edu.description}</Text>
+                  </View>
+                );
+              })}
+            </View>
+          </View>
+        );
+      case "projects":
+        return (
+          <View>
+            <Text style={styles.sectionHeader}>Projects</Text>
+            <View style={styles.horizontalLine}></View>
+            <View style={styles.educationSection}>
+              {data.projects.map((edu) => {
+                return (
+                  <View key={crypto.randomUUID()}>
+                    <View style={[styles.spaceBetween, styles.mainHeading]}>
+                      <Text>
+                        <Link style={styles.link} src={edu.link}>
+                          {edu.heading}
+                        </Link>
+                      </Text>
                       <Text>{edu.date}</Text>
                     </View>
 
@@ -161,5 +192,9 @@ const styles = StyleSheet.create({
   },
   description: {
     marginVertical: "10px",
+  },
+  link: {
+    textDecoration: "underline",
+    color: "black",
   },
 });

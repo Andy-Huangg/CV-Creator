@@ -34,6 +34,7 @@ export default function PersonalInformation({ isActive, onShow, updateData }) {
   const content = () => {
     return (
       <div>
+        •
         <form>
           <label>
             Name:

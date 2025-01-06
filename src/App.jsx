@@ -31,7 +31,17 @@ const App = () => {
         description: "Blah blah blah blah\nabcd",
       },
     ],
-    projects: [],
+    projects: [
+      {
+        heading: "CV-Creator",
+        link: "https://github.com/Andy-Huangg/CV-Creator",
+        subHeading: "Web Application for Creating Professional CVs",
+        location: "React, HTML, CSS, JavaScript",
+        date: "2025",
+        description:
+          "CV-Creator is a project I built to improve my React skills by creating a tool for generating customizable CVs. This very CV was generated using the project.",
+      },
+    ],
     skills: [],
     referees: [],
   });
@@ -39,6 +49,7 @@ const App = () => {
     "personalInfo",
     "education",
     "experience",
+    "projects",
   ]);
 
   const [showDownload, setShowDownload] = useState(false);
@@ -74,7 +85,7 @@ const App = () => {
         </div>
 
         <div>
-          <PDFViewer width={1000} height={1000}>
+          <PDFViewer width={1000} height={1500}>
             <PDFFile data={cvData} sectionOrder={sectionOrder}></PDFFile>
           </PDFViewer>
         </div>
