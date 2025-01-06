@@ -119,6 +119,26 @@ export default function PDFFile({ data, sectionOrder }) {
             </View>
           </View>
         );
+
+      case "skills":
+        return (
+          <View>
+            <Text style={styles.sectionHeader}>Skills</Text>
+            <View style={styles.horizontalLine}></View>
+            <View style={styles.educationSection}>
+              {data.skills.map((edu) => {
+                return (
+                  <View key={crypto.randomUUID()}>
+                    <Text style={styles.skill}>• {edu}</Text>
+                  </View>
+                );
+              })}
+            </View>
+          </View>
+        );
+
+      default:
+        return null;
     }
   };
   return (
@@ -197,4 +217,5 @@ const styles = StyleSheet.create({
     textDecoration: "underline",
     color: "black",
   },
+  skill: {},
 });

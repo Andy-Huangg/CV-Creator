@@ -3,7 +3,7 @@ import PersonalInformation from "./panels/PersonalInformation";
 import Education from "./panels/Education";
 import Experience from "./panels/Experience";
 import Projects from "./panels/Projects";
-
+import Skills from "./panels/Skills";
 export default function CVInput({ cvData, setCvData }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const handleDataChange = (newData) => {
@@ -39,6 +39,14 @@ export default function CVInput({ cvData, setCvData }) {
           setActiveIndex(3);
         }}
         projectData={cvData.projects}
+        updateData={handleDataChange}
+      />
+      <Skills
+        isActive={activeIndex === 4}
+        onShow={() => {
+          setActiveIndex(4);
+        }}
+        skillData={cvData.skills}
         updateData={handleDataChange}
       />
     </>

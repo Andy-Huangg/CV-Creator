@@ -24,7 +24,7 @@ const App = () => {
     ],
     experience: [
       {
-        heading: "Countdown",
+        heading: "Supermarket",
         subHeading: "Produce Assistant",
         location: "Auckland, New Zealand",
         date: "2023 - Present",
@@ -42,7 +42,10 @@ const App = () => {
           "CV-Creator is a project I built to improve my React skills by creating a tool for generating customizable CVs. This very CV was generated using the project.",
       },
     ],
-    skills: [],
+    skills: [
+      "Java - Knowledge of object-oriented design concepts",
+      " MATLAB – Created graphs, visualized data and solved mathematical problems.",
+    ],
     referees: [],
   });
   const [sectionOrder, setSectionOrder] = useState([
@@ -50,6 +53,7 @@ const App = () => {
     "education",
     "experience",
     "projects",
+    "skills",
   ]);
 
   const [showDownload, setShowDownload] = useState(false);

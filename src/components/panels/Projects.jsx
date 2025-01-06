@@ -104,7 +104,7 @@ export default function Projects({
             />
           </label>
           <label>
-            Location:
+            Technologies:
             <input
               type="text"
               value={thisProject.location}
