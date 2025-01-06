@@ -35,6 +35,11 @@ const App = () => {
     skills: [],
     referees: [],
   });
+  const [sectionOrder, setSectionOrder] = useState([
+    "personalInfo",
+    "education",
+    "experience",
+  ]);
 
   const [showDownload, setShowDownload] = useState(false);
   const handleGeneratePDF = () => {
@@ -55,7 +60,7 @@ const App = () => {
           {showDownload ? (
             <div className="">
               <PDFDownloadLink
-                document={<PDFFile data={cvData} />}
+                document={<PDFFile data={cvData} sectionOrder={sectionOrder} />}
                 fileName={`${cvData.name} CV.pdf`}
               >
                 {({ blob, url, loading, error }) =>
@@ -70,7 +75,7 @@ const App = () => {
 
         <div>
           <PDFViewer width={1000} height={1000}>
-            <PDFFile data={cvData}></PDFFile>
+            <PDFFile data={cvData} sectionOrder={sectionOrder}></PDFFile>
           </PDFViewer>
         </div>
       </div>

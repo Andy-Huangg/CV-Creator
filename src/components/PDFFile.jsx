@@ -8,64 +8,94 @@ import {
   Font,
 } from "@react-pdf/renderer";
 
-export default function PDFFile({ data }) {
+export default function PDFFile({ data, sectionOrder }) {
+  const makeSection = (section) => {
+    switch (section) {
+      case "personalInfo":
+        return (
+          <View>
+            <View style={[styles.section]}>
+              <View style={styles.name}>
+                <Text>{data.name}</Text>
+              </View>
+              <View style={styles.personalInformation}>
+                <Text style={styles.personalInformationChild}>
+                  {data.email}
+                </Text>
+                <Text style={styles.personalInformationChild}>
+                  {data.phone}
+                </Text>
+                <Text style={styles.personalInformationChild}>
+                  {data.location}
+                </Text>
+                <Text style={styles.personalInformationChild}>
+                  {data.github}
+                </Text>
+              </View>
+            </View>
+            <View style={styles.horizontalLine}></View>
+          </View>
+        );
+      case "education":
+        return (
+          <View>
+            <Text style={styles.sectionHeader}>Education</Text>
+            <View style={styles.horizontalLine}></View>
+            <View style={styles.educationSection}>
+              {data.education.map((edu) => {
+                return (
+                  <View key={crypto.randomUUID()}>
+                    <View style={[styles.spaceBetween, styles.mainHeading]}>
+                      <Text>{edu.heading}</Text>
+                      <Text>{edu.date}</Text>
+                    </View>
+
+                    <View style={[styles.spaceBetween, styles.subHeading]}>
+                      <Text>{edu.subHeading}</Text>
+                      <Text>{edu.location}</Text>
+                    </View>
+
+                    <Text style={styles.description}>{edu.description}</Text>
+                  </View>
+                );
+              })}
+            </View>
+          </View>
+        );
+      case "experience":
+        return (
+          <View>
+            <Text style={styles.sectionHeader}>Work Experience</Text>
+            <View style={styles.horizontalLine}></View>
+            <View style={styles.educationSection}>
+              {data.experience.map((edu) => {
+                return (
+                  <View key={crypto.randomUUID()}>
+                    <View style={[styles.spaceBetween, styles.mainHeading]}>
+                      <Text>{edu.heading}</Text>
+                      <Text>{edu.date}</Text>
+                    </View>
+
+                    <View style={[styles.spaceBetween, styles.subHeading]}>
+                      <Text>{edu.subHeading}</Text>
+                      <Text>{edu.location}</Text>
+                    </View>
+
+                    <Text style={styles.description}>{edu.description}</Text>
+                  </View>
+                );
+              })}
+            </View>
+          </View>
+        );
+    }
+  };
   return (
     <Document>
       <Page size="A4" style={[styles.page]}>
-        <View style={[styles.section]}>
-          <View style={styles.name}>
-            <Text>{data.name}</Text>
-          </View>
-          <View style={styles.personalInformation}>
-            <Text style={styles.personalInformationChild}>{data.email}</Text>
-            <Text style={styles.personalInformationChild}>{data.phone}</Text>
-            <Text style={styles.personalInformationChild}>{data.location}</Text>
-            <Text style={styles.personalInformationChild}>{data.github}</Text>
-          </View>
-        </View>
-        <View style={styles.horizontalLine}></View>
-        <Text style={styles.sectionHeader}>Education</Text>
-        <View style={styles.horizontalLine}></View>
-        <View style={styles.educationSection}>
-          {data.education.map((edu) => {
-            return (
-              <View key={crypto.randomUUID()}>
-                <View style={[styles.spaceBetween, styles.mainHeading]}>
-                  <Text>{edu.heading}</Text>
-                  <Text>{edu.date}</Text>
-                </View>
-
-                <View style={[styles.spaceBetween, styles.subHeading]}>
-                  <Text>{edu.subHeading}</Text>
-                  <Text>{edu.location}</Text>
-                </View>
-
-                <Text style={styles.description}>{edu.description}</Text>
-              </View>
-            );
-          })}
-        </View>
-        <Text style={styles.sectionHeader}>Work Experience</Text>
-        <View style={styles.horizontalLine}></View>
-        <View style={styles.educationSection}>
-          {data.experience.map((edu) => {
-            return (
-              <View key={crypto.randomUUID()}>
-                <View style={[styles.spaceBetween, styles.mainHeading]}>
-                  <Text>{edu.heading}</Text>
-                  <Text>{edu.date}</Text>
-                </View>
-
-                <View style={[styles.spaceBetween, styles.subHeading]}>
-                  <Text>{edu.subHeading}</Text>
-                  <Text>{edu.location}</Text>
-                </View>
-
-                <Text style={styles.description}>{edu.description}</Text>
-              </View>
-            );
-          })}
-        </View>
+        {sectionOrder.map((section) => (
+          <View key={section}>{makeSection(section)}</View>
+        ))}
       </Page>
     </Document>
   );
