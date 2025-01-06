@@ -136,7 +136,27 @@ export default function PDFFile({ data, sectionOrder }) {
             </View>
           </View>
         );
-
+      case "referees":
+        return (
+          <View>
+            <Text style={styles.sectionHeader}>Referees</Text>
+            <View style={styles.horizontalLine}></View>
+            <View style={styles.educationSection}>
+              <View style={styles.refereeSection}>
+                {data.referees.map((edu) => {
+                  return (
+                    <View key={crypto.randomUUID()} style={styles.referee}>
+                      <Text style={styles.mainHeading}>{edu.name}</Text>
+                      <Text>{edu.title}</Text>
+                      <Text>{edu.company}</Text>
+                      <Text>{edu.phone}</Text>
+                    </View>
+                  );
+                })}
+              </View>
+            </View>
+          </View>
+        );
       default:
         return null;
     }
@@ -218,4 +238,14 @@ const styles = StyleSheet.create({
     color: "black",
   },
   skill: {},
+  referee: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  refereeSection: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    gap: "50px",
+  },
 });

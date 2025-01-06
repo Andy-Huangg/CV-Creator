@@ -27,7 +27,6 @@ export default function Skills({ isActive, onShow, skillData, updateData }) {
   }
 
   function moveItem(index, direction) {
-    console.log(index);
     const newIndex = index + direction;
     if (newIndex < 0 || newIndex >= skillData.length) return;
     const tempVariable = skillData[newIndex];
@@ -85,7 +84,7 @@ export default function Skills({ isActive, onShow, skillData, updateData }) {
 
   return (
     <section>
-      <h2 onClick={onShow}>Skill</h2>
+      <h2 onClick={onShow}>Skills</h2>
       {isActive ? content() : null}
     </section>
   );

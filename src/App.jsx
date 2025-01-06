@@ -10,7 +10,7 @@ const App = () => {
   const [cvData, setCvData] = useState({
     name: "John Smith",
     email: "johnsmith649@gmail.com",
-    phone: "0284073446",
+    phone: "028 407 3446",
     location: "Auckland, New Zealand",
     github: "https://github.com/Andy-Huangg",
     education: [
@@ -44,9 +44,16 @@ const App = () => {
     ],
     skills: [
       "Java - Knowledge of object-oriented design concepts",
-      " MATLAB – Created graphs, visualized data and solved mathematical problems.",
+      " MATLAB Created graphs, visualized data and solved mathematical problems.",
     ],
-    referees: [],
+    referees: [
+      {
+        name: "George mate",
+        title: "Main Supervisor",
+        company: "ThisCompany",
+        phone: "028 407 3446 ",
+      },
+    ],
   });
   const [sectionOrder, setSectionOrder] = useState([
     "personalInfo",
@@ -54,6 +61,7 @@ const App = () => {
     "experience",
     "projects",
     "skills",
+    "referees",
   ]);
 
   const [showDownload, setShowDownload] = useState(false);

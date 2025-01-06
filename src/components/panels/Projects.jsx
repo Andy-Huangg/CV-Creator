@@ -43,7 +43,6 @@ export default function Projects({
   }
 
   function moveItem(index, direction) {
-    console.log(index);
     const newIndex = index + direction;
     if (newIndex < 0 || newIndex >= projectData.length) return;
     const updatedData = [...projectData];
