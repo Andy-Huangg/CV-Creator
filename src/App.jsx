@@ -4,7 +4,7 @@ import { PDFDownloadLink, Document, Page } from "@react-pdf/renderer";
 import { PDFViewer } from "@react-pdf/renderer";
 import ReactPDF from "@react-pdf/renderer";
 import PDFFile from "./components/PDFFile";
-import CVDetails from "./components/CVDetails";
+import CVInput from "./components/CVInput";
 
 const App = () => {
   const [cvData, setCvData] = useState({
@@ -22,7 +22,15 @@ const App = () => {
         description: "Blah blah blah blah\nabcd",
       },
     ],
-    experience: [],
+    experience: [
+      {
+        heading: "Countdown",
+        subHeading: "Produce Assistant",
+        location: "Auckland, New Zealand",
+        date: "2023 - Present",
+        description: "Blah blah blah blah\nabcd",
+      },
+    ],
     projects: [],
     skills: [],
     referees: [],
@@ -40,7 +48,7 @@ const App = () => {
   return (
     <div className="main">
       <div className="leftSide">
-        <CVDetails cvData={cvData} setCvData={setCvData}></CVDetails>
+        <CVInput cvData={cvData} setCvData={setCvData}></CVInput>
       </div>
       <div className="rightSide">
         <div>

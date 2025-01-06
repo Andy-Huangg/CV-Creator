@@ -45,6 +45,27 @@ export default function PDFFile({ data }) {
             );
           })}
         </View>
+        <Text style={styles.sectionHeader}>Work Experience</Text>
+        <View style={styles.horizontalLine}></View>
+        <View style={styles.educationSection}>
+          {data.experience.map((edu) => {
+            return (
+              <View key={crypto.randomUUID()}>
+                <View style={[styles.spaceBetween, styles.mainHeading]}>
+                  <Text>{edu.heading}</Text>
+                  <Text>{edu.date}</Text>
+                </View>
+
+                <View style={[styles.spaceBetween, styles.subHeading]}>
+                  <Text>{edu.subHeading}</Text>
+                  <Text>{edu.location}</Text>
+                </View>
+
+                <Text style={styles.description}>{edu.description}</Text>
+              </View>
+            );
+          })}
+        </View>
       </Page>
     </Document>
   );

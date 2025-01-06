@@ -1,8 +1,9 @@
 import { useState } from "react";
 import PersonalInformation from "./panels/PersonalInformation";
 import Education from "./panels/Education";
+import Experience from "./panels/Experience";
 
-export default function CVDetails({ cvData, setCvData }) {
+export default function CVInput({ cvData, setCvData }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const handleDataChange = (newData) => {
     setCvData((prevData) => ({ ...prevData, ...newData }));
@@ -21,6 +22,14 @@ export default function CVDetails({ cvData, setCvData }) {
           setActiveIndex(1);
         }}
         educationData={cvData.education}
+        updateData={handleDataChange}
+      />
+      <Experience
+        isActive={activeIndex === 2}
+        onShow={() => {
+          setActiveIndex(2);
+        }}
+        experienceData={cvData.experience}
         updateData={handleDataChange}
       />
     </>
