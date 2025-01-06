@@ -7,7 +7,6 @@ import {
   Image,
   Font,
 } from "@react-pdf/renderer";
-import dino from "/dinosaur.png";
 
 export default function PDFFile({ data }) {
   return (

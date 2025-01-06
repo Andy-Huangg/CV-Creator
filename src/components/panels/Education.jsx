@@ -42,6 +42,7 @@ export default function Education({
   }
 
   function moveItem(index, direction) {
+    console.log(index);
     const newIndex = index + direction;
     if (newIndex < 0 || newIndex >= educationData.length) return;
     const updatedData = [...educationData];
@@ -59,8 +60,12 @@ export default function Education({
     const listEducation = educationData.map((education, index) => (
       <li key={crypto.randomUUID()}>
         {education.heading}
-        <button onClick={() => moveItem(index, -1)}>Up</button>
-        <button onClick={() => moveItem(index, 1)}>Down</button>
+        {index != 0 && index != null ? (
+          <button onClick={() => moveItem(index, -1)}>Up</button>
+        ) : null}
+        {index != educationData.length - 1 && index != null ? (
+          <button onClick={() => moveItem(index, 1)}>Down</button>
+        ) : null}
         <button onClick={() => handleItemClick(index)}>Edit</button>
         <button onClick={() => handleDelete(index)}>Delete</button>
       </li>
