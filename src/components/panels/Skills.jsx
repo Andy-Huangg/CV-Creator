@@ -83,8 +83,10 @@ export default function Skills({ isActive, onShow, skillData, updateData }) {
   };
 
   return (
-    <section>
-      <h2 onClick={onShow}>Skills</h2>
+    <section className="section">
+      <h2 onClick={onShow} className={`sectionHeader `}>
+        Skills
+      </h2>
       {isActive ? content() : null}
     </section>
   );

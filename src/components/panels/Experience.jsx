@@ -131,8 +131,10 @@ export default function Experience({
   };
 
   return (
-    <section>
-      <h2 onClick={onShow}>Experience</h2>
+    <section className="section">
+      <h2 onClick={onShow} className={`sectionHeader `}>
+        Experience
+      </h2>
       {isActive ? content() : null}
     </section>
   );

@@ -6,6 +6,8 @@
 
 .leftSide {
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   background-color: beige;
 }
@@ -17,4 +19,58 @@
 
 .c {
   color: rebeccapurple;
+}
+
+@keyframes slideOut {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Style for the card */
+.sectionHeader {
+  background-color: azure;
+  padding: 1rem;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  border: 1px solid #ddd;
+}
+
+.card {
+  padding: 20px;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top: none;
+
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide-out {
+  transform-origin: top;
+  animation: slideOut 0.2s linear forwards;
+}
+
+.slide-left {
+  animation: slideLeft 1s linear;
+}
+
+h2,
+h3,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }

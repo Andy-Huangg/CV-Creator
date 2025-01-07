@@ -33,7 +33,7 @@ export default function PersonalInformation({ isActive, onShow, updateData }) {
 
   const content = () => {
     return (
-      <div className={`card ${!isActive ? "slide-out" : ""}`}>
+      <div className={`card ${isActive ? "slide-out" : ""}`}>
         •
         <form>
           <label>
@@ -81,8 +81,8 @@ export default function PersonalInformation({ isActive, onShow, updateData }) {
     );
   };
   return (
-    <section>
-      <h2 onClick={onShow} className="card">
+    <section className="section">
+      <h2 onClick={onShow} className={`sectionHeader `}>
         Personal Information
       </h2>
 

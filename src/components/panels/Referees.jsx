@@ -120,8 +120,10 @@ export default function Referees({
   };
 
   return (
-    <section>
-      <h2 onClick={onShow}>Referees</h2>
+    <section className="section">
+      <h2 onClick={onShow} className={`sectionHeader `}>
+        Referees
+      </h2>
       {isActive ? content() : null}
     </section>
   );

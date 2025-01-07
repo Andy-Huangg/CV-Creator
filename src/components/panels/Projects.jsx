@@ -139,8 +139,10 @@ export default function Projects({
   };
 
   return (
-    <section>
-      <h2 onClick={onShow}>Projects</h2>
+    <section className="section">
+      <h2 onClick={onShow} className={`sectionHeader `}>
+        Projects
+      </h2>
       {isActive ? content() : null}
     </section>
   );

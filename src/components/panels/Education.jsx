@@ -131,8 +131,10 @@ export default function Education({
   };
 
   return (
-    <section>
-      <h2 onClick={onShow}>Education</h2>
+    <section className="section">
+      <h2 onClick={onShow} className={`sectionHeader `}>
+        Education
+      </h2>
       {isActive ? content() : null}
     </section>
   );

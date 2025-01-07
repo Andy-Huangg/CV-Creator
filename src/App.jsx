@@ -97,7 +97,7 @@ const App = () => {
         </div>
 
         <div>
-          <PDFViewer width={1000} height={1500}>
+          <PDFViewer width={1000} height={1150}>
             <PDFFile data={cvData} sectionOrder={sectionOrder}></PDFFile>
           </PDFViewer>
         </div>
