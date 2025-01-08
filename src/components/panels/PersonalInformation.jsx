@@ -34,49 +34,53 @@ export default function PersonalInformation({ isActive, onShow, updateData }) {
   const content = () => {
     return (
       <div className={`card ${isActive ? "slide-out" : ""}`}>
-        •
-        <form>
-          <label>
-            Name:
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => handleChange("name", e)}
-            />
-          </label>
-          <label>
-            Email:
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => handleChange("email", e)}
-            />
-          </label>
-          <label>
-            Phone:
-            <input
-              type="text"
-              value={phone}
-              onChange={(e) => handleChange("phone", e)}
-            />
-          </label>
-          <label>
-            location:
-            <input
-              type="text"
-              value={location}
-              onChange={(e) => handleChange("location", e)}
-            />
-          </label>
-          <label className="c">
-            github:
-            <input
-              type="text"
-              value={github}
-              onChange={(e) => handleChange("github", e)}
-            />
-          </label>
-        </form>
+        <div className="formContainer">
+          <form>
+            <div className="formGroup">
+              <label className="center">Name:</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => handleChange("name", e)}
+              />
+            </div>
+            <div className="formGroup">
+              <label className="center">Email: </label>
+              <input
+                type="text"
+                value={email}
+                onChange={(e) => handleChange("email", e)}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label className="center">Phone:</label>
+              <input
+                type="text"
+                value={phone}
+                onChange={(e) => handleChange("phone", e)}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label className="center">Location:</label>
+              <input
+                type="text"
+                value={location}
+                onChange={(e) => handleChange("location", e)}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label className="center">Github link:</label>
+              <input
+                type="text"
+                value={github}
+                onChange={(e) => handleChange("github", e)}
+              />
+            </div>
+          </form>
+        </div>
       </div>
     );
   };

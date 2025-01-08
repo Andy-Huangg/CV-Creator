@@ -76,6 +76,7 @@ const App = () => {
   return (
     <div className="main">
       <div className="leftSide">
+        <h1>CV • Creator</h1>
         <CVInput cvData={cvData} setCvData={setCvData}></CVInput>
       </div>
       <div className="rightSide">

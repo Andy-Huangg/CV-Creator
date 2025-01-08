@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ListItem from "../ListItem";
 
 export default function Experience({
   isActive,
@@ -56,75 +57,67 @@ export default function Experience({
     updateData({ experience: updatedData });
   }
 
-  function ListExperience() {
-    const listExperience = experienceData.map((experience, index) => (
-      <li key={crypto.randomUUID()}>
-        {experience.heading}
-        {index != 0 && index != null ? (
-          <button onClick={() => moveItem(index, -1)}>Up</button>
-        ) : null}
-        {index != experienceData.length - 1 && index != null ? (
-          <button onClick={() => moveItem(index, 1)}>Down</button>
-        ) : null}
-        <button onClick={() => handleItemClick(index)}>Edit</button>
-        <button onClick={() => handleDelete(index)}>Delete</button>
-      </li>
-    ));
-    return listExperience;
-  }
-
   const content = () => {
     return (
-      <div>
-        <h3>Add experience</h3>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Experience:
-            <input
-              type="text"
-              value={thisExperience.heading}
-              onChange={(e) => handleChange("heading", e)}
+      <div className={`card ${isActive ? "slide-out" : ""}`}>
+        <div className="formContainer">
+          <h3 className="marginBottom">
+            {editingIndex == null ? "Add experience" : "Edit experience"}
+          </h3>
+          <form onSubmit={handleSubmit}>
+            <div className="formGroup">
+              <label>Experience:</label>
+              <input
+                type="text"
+                value={thisExperience.heading}
+                onChange={(e) => handleChange("heading", e)}
+              />
+            </div>
+            <div className="formGroup">
+              <label>Role:</label>
+              <input
+                type="text"
+                value={thisExperience.subHeading}
+                onChange={(e) => handleChange("subHeading", e)}
+              />
+            </div>
+            <div className="formGroup">
+              <label>Location:</label>
+              <input
+                type="text"
+                value={thisExperience.location}
+                onChange={(e) => handleChange("location", e)}
+              />
+            </div>
+            <div className="formGroup">
+              <label>Date:</label>
+              <input
+                type="text"
+                value={thisExperience.date}
+                onChange={(e) => handleChange("date", e)}
+              />
+            </div>
+            <div className="formGroup">
+              <label>Description:</label>
+              <textarea
+                type="text"
+                value={thisExperience.description}
+                onChange={(e) => handleChange("description", e)}
+              />
+            </div>
+            <button type="submit">
+              {editingIndex !== null ? "Finish Editing" : "Add Experience"}
+            </button>
+          </form>
+          <div className="marginTop">
+            <ListItem
+              itemData={experienceData}
+              editingIndex={editingIndex}
+              moveItem={moveItem}
+              handleItemClick={handleItemClick}
+              handleDelete={handleDelete}
             />
-          </label>
-          <label>
-            Role:
-            <input
-              type="text"
-              value={thisExperience.subHeading}
-              onChange={(e) => handleChange("subHeading", e)}
-            />
-          </label>
-          <label>
-            Location:
-            <input
-              type="text"
-              value={thisExperience.location}
-              onChange={(e) => handleChange("location", e)}
-            />
-          </label>
-          <label>
-            Date:
-            <input
-              type="text"
-              value={thisExperience.date}
-              onChange={(e) => handleChange("date", e)}
-            />
-          </label>
-          <label>
-            Description:
-            <textarea
-              type="text"
-              value={thisExperience.description}
-              onChange={(e) => handleChange("description", e)}
-            />
-          </label>
-          <button type="submit">
-            {editingIndex !== null ? "Finish Editing" : "Add Experience"}
-          </button>
-        </form>
-
-        <div>
-          <ListExperience></ListExperience>
+          </div>
         </div>
       </div>
     );

@@ -59,15 +59,22 @@ export default function Education({
   function ListEducation() {
     const listEducation = educationData.map((education, index) => (
       <li key={crypto.randomUUID()}>
-        {education.heading}
-        {index != 0 && index != null ? (
-          <button onClick={() => moveItem(index, -1)}>Up</button>
-        ) : null}
-        {index != educationData.length - 1 && index != null ? (
-          <button onClick={() => moveItem(index, 1)}>Down</button>
-        ) : null}
-        <button onClick={() => handleItemClick(index)}>Edit</button>
-        <button onClick={() => handleDelete(index)}>Delete</button>
+        <div className="listItems">
+          <div className="center">• {education.heading}</div>
+
+          {editingIndex == null ? (
+            <div className="center">
+              {index != 0 && index != null ? (
+                <button onClick={() => moveItem(index, -1)}>Up</button>
+              ) : null}
+              {index != educationData.length - 1 && index != null ? (
+                <button onClick={() => moveItem(index, 1)}>Down</button>
+              ) : null}
+              <button onClick={() => handleItemClick(index)}>Edit</button>
+              <button onClick={() => handleDelete(index)}>Delete</button>
+            </div>
+          ) : null}
+        </div>
       </li>
     ));
     return listEducation;
@@ -75,56 +82,70 @@ export default function Education({
 
   const content = () => {
     return (
-      <div>
-        <h3>Add education</h3>
-        <form onSubmit={handleSubmit}>
-          <label>
-            School:
-            <input
-              type="text"
-              value={thisEducation.heading}
-              onChange={(e) => handleChange("heading", e)}
-            />
-          </label>
-          <label>
-            Degree:
-            <input
-              type="text"
-              value={thisEducation.subHeading}
-              onChange={(e) => handleChange("subHeading", e)}
-            />
-          </label>
-          <label>
-            Location:
-            <input
-              type="text"
-              value={thisEducation.location}
-              onChange={(e) => handleChange("location", e)}
-            />
-          </label>
-          <label>
-            Date:
-            <input
-              type="text"
-              value={thisEducation.date}
-              onChange={(e) => handleChange("date", e)}
-            />
-          </label>
-          <label>
-            Description:
-            <textarea
-              type="text"
-              value={thisEducation.description}
-              onChange={(e) => handleChange("description", e)}
-            />
-          </label>
-          <button type="submit">
-            {editingIndex !== null ? "Finish Editing" : "Add Education"}
-          </button>
-        </form>
+      <div className={`card ${isActive ? "slide-out" : ""}`}>
+        <div className="formContainer">
+          <h3 className="marginBottom">
+            {editingIndex == null ? "Add education" : "Edit education"}
+          </h3>
+          <form onSubmit={handleSubmit}>
+            <div className="formGroup">
+              <label>School: </label>
+              <input
+                type="text"
+                value={thisEducation.heading}
+                onChange={(e) => handleChange("heading", e)}
+              />
+            </div>
 
-        <div>
-          <ListEducation></ListEducation>
+            <div className="formGroup">
+              <label>Degree: </label>
+              <input
+                type="text"
+                value={thisEducation.subHeading}
+                onChange={(e) => handleChange("subHeading", e)}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label>Location: </label>
+              <input
+                type="text"
+                value={thisEducation.location}
+                onChange={(e) => handleChange("location", e)}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label>Date: </label>
+              <input
+                type="text"
+                value={thisEducation.date}
+                onChange={(e) => handleChange("date", e)}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label>Description: </label>
+              <textarea
+                type="text"
+                value={thisEducation.description}
+                onChange={(e) => handleChange("description", e)}
+              />
+            </div>
+
+            <button type="submit">
+              {editingIndex !== null ? "Finish Editing" : "Add Education"}
+            </button>
+          </form>
+          <div className="marginTop">
+            <ListEducation
+              itemData={educationData}
+              editingIndex={editingIndex}
+              moveItem={moveItem}
+              handleItemClick={handleItemClick}
+              handleDelete={handleDelete}
+            ></ListEducation>
+          </div>
         </div>
       </div>
     );
