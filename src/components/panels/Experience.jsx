@@ -125,7 +125,7 @@ export default function Experience({
   return (
     <section className="section">
       <h2
-        onClick={() => (isActive ? onShow(null) : onShow(1))}
+        onClick={() => (isActive ? onShow(null) : onShow(2))}
         className={`sectionHeader ${isActive ? "activeHeader" : ""} `}
       >
         Experience

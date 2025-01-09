@@ -5,6 +5,7 @@ import { PDFViewer } from "@react-pdf/renderer";
 import ReactPDF from "@react-pdf/renderer";
 import PDFFile from "./components/PDFFile";
 import CVInput from "./components/CVInput";
+import LiveDisplay from "./components/LiveDisplay";
 
 const App = () => {
   const [cvData, setCvData] = useState({
@@ -65,6 +66,14 @@ const App = () => {
   ]);
 
   const [showDownload, setShowDownload] = useState(false);
+  const [showAltPDF, setShowAltPDF] = useState(false);
+
+  const handleShowAltPDF = () => {
+    {
+      showAltPDF ? setShowAltPDF(false) : setShowAltPDF(true);
+    }
+  };
+
   const handleGeneratePDF = () => {
     setShowDownload(true);
   };
@@ -76,32 +85,49 @@ const App = () => {
   return (
     <div className="main">
       <div className="leftSide">
-        <h1>CV • Creator</h1>
-        <CVInput cvData={cvData} setCvData={setCvData}></CVInput>
-      </div>
-      <div className="rightSide">
-        <div>
-          {showDownload ? (
-            <div className="">
-              <PDFDownloadLink
-                document={<PDFFile data={cvData} sectionOrder={sectionOrder} />}
-                fileName={`${cvData.name} CV.pdf`}
-              >
-                {({ blob, url, loading, error }) =>
-                  loading ? null : <button>Download</button>
-                }
-              </PDFDownloadLink>
+        <div className="title">
+          <h1>CV • Creator</h1>
+          <div className="titleRight">
+            <div>
+              {showDownload ? (
+                <div className="">
+                  <PDFDownloadLink
+                    document={
+                      <PDFFile data={cvData} sectionOrder={sectionOrder} />
+                    }
+                    fileName={`${cvData.name} CV.pdf`}
+                  >
+                    {({ blob, url, loading, error }) =>
+                      loading ? null : <button>Download</button>
+                    }
+                  </PDFDownloadLink>
+                </div>
+              ) : (
+                <button onClick={handleGeneratePDF}>Generate PDF</button>
+              )}
             </div>
-          ) : (
-            <button onClick={handleGeneratePDF}>Generate PDF</button>
-          )}
+
+            <div>
+              <button onClick={handleShowAltPDF}>
+                Toggle alternate PDFView
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div>
-          <PDFViewer width={1000} height={1150}>
-            <PDFFile data={cvData} sectionOrder={sectionOrder}></PDFFile>
-          </PDFViewer>
-        </div>
+        <CVInput cvData={cvData} setCvData={setCvData}></CVInput>
+      </div>
+
+      <div className="rightSide">
+        {showAltPDF ? (
+          <div>
+            <PDFViewer width={1000} height={1150}>
+              <PDFFile data={cvData} sectionOrder={sectionOrder}></PDFFile>
+            </PDFViewer>
+          </div>
+        ) : (
+          <LiveDisplay data={cvData} sectionOrder={sectionOrder}></LiveDisplay>
+        )}
       </div>
     </div>
   );

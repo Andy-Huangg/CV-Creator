@@ -116,16 +116,15 @@ export default function Projects({
               {editingIndex !== null ? "Finish Editing" : "Add Project"}
             </button>
           </form>
-        </div>
-
-        <div className="marginTop">
-          <ListItem
-            itemData={projectData}
-            editingIndex={editingIndex}
-            moveItem={moveItem}
-            handleItemClick={handleItemClick}
-            handleDelete={handleDelete}
-          ></ListItem>
+          <div className="marginTop">
+            <ListItem
+              itemData={projectData}
+              editingIndex={editingIndex}
+              moveItem={moveItem}
+              handleItemClick={handleItemClick}
+              handleDelete={handleDelete}
+            ></ListItem>
+          </div>
         </div>
       </div>
     );
