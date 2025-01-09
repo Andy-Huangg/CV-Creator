@@ -6,6 +6,7 @@ import ReactPDF from "@react-pdf/renderer";
 import PDFFile from "./components/PDFFile";
 import CVInput from "./components/CVInput";
 import LiveDisplay from "./components/LiveDisplay";
+import { emptyCVData } from "./emptyCVData";
 
 const App = () => {
   const [cvData, setCvData] = useState({
@@ -43,10 +44,7 @@ const App = () => {
           "CV-Creator is a project I built to improve my React skills by creating a tool for generating customizable CVs. This very CV was generated using the project.",
       },
     ],
-    skills: [
-      "Java - Knowledge of object-oriented design concepts",
-      " MATLAB Created graphs, visualized data and solved mathematical problems.",
-    ],
+    skills: ["Java - Knowledge of object-oriented design concepts"],
     referees: [
       {
         heading: "George mate",
@@ -78,6 +76,9 @@ const App = () => {
     setShowDownload(true);
   };
 
+  const handleReset = () => {
+    setCvData(emptyCVData);
+  };
   useEffect(() => {
     setShowDownload(false);
   }, [cvData]);
@@ -88,6 +89,11 @@ const App = () => {
         <div className="title">
           <h1>CV • Creator</h1>
           <div className="titleRight">
+            <div className="resetData">
+              <button className="delete" onClick={handleReset}>
+                Reset
+              </button>
+            </div>
             <div>
               {showDownload ? (
                 <div className="">

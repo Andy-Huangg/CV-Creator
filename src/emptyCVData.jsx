@@ -1,4 +1,4 @@
-export const CVData = {
+export const emptyCVData = {
   name: "",
   email: "",
   phone: "",
