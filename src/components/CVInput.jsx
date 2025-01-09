@@ -6,7 +6,7 @@ import Projects from "./panels/Projects";
 import Skills from "./panels/Skills";
 import Referees from "./panels/Referees";
 export default function CVInput({ cvData, setCvData }) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(null);
   const handleDataChange = (newData) => {
     setCvData((prevData) => ({ ...prevData, ...newData }));
   };
