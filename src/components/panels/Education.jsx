@@ -43,7 +43,6 @@ export default function Education({
   }
 
   function moveItem(index, direction) {
-    console.log(index);
     const newIndex = index + direction;
     if (newIndex < 0 || newIndex >= educationData.length) return;
     const updatedData = [...educationData];
@@ -131,7 +130,7 @@ export default function Education({
   return (
     <section className="section">
       <h2
-        onClick={onShow}
+        onClick={() => (isActive ? onShow(null) : onShow(1))}
         className={`sectionHeader ${isActive ? "activeHeader" : ""} `}
       >
         Education

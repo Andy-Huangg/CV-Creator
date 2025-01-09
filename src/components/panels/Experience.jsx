@@ -43,7 +43,6 @@ export default function Experience({
   }
 
   function moveItem(index, direction) {
-    console.log(index);
     const newIndex = index + direction;
     if (newIndex < 0 || newIndex >= experienceData.length) return;
     const updatedData = [...experienceData];
@@ -126,7 +125,7 @@ export default function Experience({
   return (
     <section className="section">
       <h2
-        onClick={onShow}
+        onClick={() => (isActive ? onShow(null) : onShow(1))}
         className={`sectionHeader ${isActive ? "activeHeader" : ""} `}
       >
         Experience

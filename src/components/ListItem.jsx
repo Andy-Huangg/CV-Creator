@@ -9,7 +9,6 @@ export default function ListItem({
 }) {
   return itemData.map((item, index) => (
     <li key={crypto.randomUUID()}>
-      {console.log(item)}
       <div className="listItems">
         {item.heading == null ? (
           <div className="center">• {item}</div>

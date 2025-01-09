@@ -100,7 +100,6 @@ export default function Referees({
             </button>
           </form>
           <div className="marginTop">
-            {console.log(refereeData)}
             <ListItem
               itemData={refereeData}
               editingIndex={editingIndex}
@@ -117,7 +116,7 @@ export default function Referees({
   return (
     <section className="section">
       <h2
-        onClick={onShow}
+        onClick={() => (isActive ? onShow(null) : onShow(5))}
         className={`sectionHeader ${isActive ? "activeHeader" : ""}`}
       >
         Referees

@@ -90,7 +90,7 @@ export default function PersonalInformation({ isActive, onShow, updateData }) {
   return (
     <section className="section">
       <h2
-        onClick={onShow}
+        onClick={() => (isActive ? onShow(null) : onShow(0))}
         className={`sectionHeader ${isActive ? "activeHeader" : ""}`}
       >
         Personal Information

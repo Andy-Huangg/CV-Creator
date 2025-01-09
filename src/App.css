@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: beige;
+  background-color: #e7f4fc;
 }
 
 .rightSide {
@@ -49,10 +49,6 @@
 .slide-out {
   transform-origin: top;
   animation: slideOut 0.2s linear forwards;
-}
-
-.slide-left {
-  animation: slideLeft 1s linear;
 }
 
 h2,

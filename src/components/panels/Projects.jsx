@@ -134,7 +134,7 @@ export default function Projects({
   return (
     <section className="section">
       <h2
-        onClick={onShow}
+        onClick={() => (isActive ? onShow(null) : onShow(3))}
         className={`sectionHeader ${isActive ? "activeHeader" : ""}`}
       >
         Projects
