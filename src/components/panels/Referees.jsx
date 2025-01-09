@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ListItem from "../ListItem";
 
 export default function Referees({
   isActive,
@@ -7,7 +8,7 @@ export default function Referees({
   updateData,
 }) {
   const initialProjectState = {
-    name: "",
+    heading: "",
     title: "",
     company: "",
     phone: "",
@@ -53,67 +54,61 @@ export default function Referees({
     updateData({ referees: updatedData });
   }
 
-  function ListReferee() {
-    const listReferee = refereeData.map((referee, index) => (
-      <li key={crypto.randomUUID()}>
-        {referee.name}
-        {index != 0 && index != null ? (
-          <button onClick={() => moveItem(index, -1)}>Up</button>
-        ) : null}
-        {index != refereeData.length - 1 && index != null ? (
-          <button onClick={() => moveItem(index, 1)}>Down</button>
-        ) : null}
-        <button onClick={() => handleItemClick(index)}>Edit</button>
-        <button onClick={() => handleDelete(index)}>Delete</button>
-      </li>
-    ));
-    return listReferee;
-  }
-
   const content = () => {
     return (
-      <div>
-        <h3>Add referee</h3>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Referee:
-            <input
-              type="text"
-              value={thisReferee.name}
-              onChange={(e) => handleChange("name", e)}
-            />
-          </label>
-          <label>
-            Title:
-            <input
-              type="text"
-              value={thisReferee.title}
-              onChange={(e) => handleChange("title", e)}
-            />
-            <label>
-              Company:
+      <div className={`card ${isActive ? "slide-out" : ""}`}>
+        <div className="formContainer">
+          <h3 className="marginBottom center head">
+            {editingIndex == null ? "Add referee" : "Edit referee"}
+          </h3>
+          <form onSubmit={handleSubmit}>
+            <div className="formGroup">
+              <label>Referee:</label>
+              <input
+                type="text"
+                value={thisReferee.heading}
+                onChange={(e) => handleChange("heading", e)}
+              />
+            </div>
+
+            <div className="formGroup">
+              <label>Title:</label>
+              <input
+                type="text"
+                value={thisReferee.title}
+                onChange={(e) => handleChange("title", e)}
+              />
+            </div>
+            <div className="formGroup">
+              <label>Company:</label>
               <input
                 type="text"
                 value={thisReferee.company}
                 onChange={(e) => handleChange("company", e)}
               />
-            </label>
-            <label>
-              Phone:
+            </div>
+            <div className="formGroup">
+              <label>Phone:</label>
               <input
                 type="text"
                 value={thisReferee.phone}
                 onChange={(e) => handleChange("phone", e)}
               />
-            </label>
-          </label>
-          <button type="submit">
-            {editingIndex !== null ? "Finish Editing" : "Add Referee"}
-          </button>
-        </form>
-
-        <div>
-          <ListReferee></ListReferee>
+            </div>
+            <button type="submit">
+              {editingIndex !== null ? "Finish Editing" : "Add Referee"}
+            </button>
+          </form>
+          <div className="marginTop">
+            {console.log(refereeData)}
+            <ListItem
+              itemData={refereeData}
+              editingIndex={editingIndex}
+              moveItem={moveItem}
+              handleItemClick={handleItemClick}
+              handleDelete={handleDelete}
+            ></ListItem>
+          </div>
         </div>
       </div>
     );
@@ -121,7 +116,10 @@ export default function Referees({
 
   return (
     <section className="section">
-      <h2 onClick={onShow} className={`sectionHeader `}>
+      <h2
+        onClick={onShow}
+        className={`sectionHeader ${isActive ? "activeHeader" : ""}`}
+      >
         Referees
       </h2>
       {isActive ? content() : null}

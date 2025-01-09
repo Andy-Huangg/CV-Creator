@@ -10,7 +10,7 @@ const App = () => {
   const [cvData, setCvData] = useState({
     name: "John Smith",
     email: "johnsmith649@gmail.com",
-    phone: "028 407 3446",
+    phone: "123 456 7890",
     location: "Auckland, New Zealand",
     github: "https://github.com/Andy-Huangg",
     education: [
@@ -48,10 +48,10 @@ const App = () => {
     ],
     referees: [
       {
-        name: "George mate",
+        heading: "George mate",
         title: "Main Supervisor",
         company: "ThisCompany",
-        phone: "028 407 3446 ",
+        phone: "123 456 7890 ",
       },
     ],
   });

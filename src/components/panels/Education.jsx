@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ListItem from "../ListItem";
 
 export default function Education({
   isActive,
@@ -56,35 +57,11 @@ export default function Education({
     updateData({ education: updatedData });
   }
 
-  function ListEducation() {
-    const listEducation = educationData.map((education, index) => (
-      <li key={crypto.randomUUID()}>
-        <div className="listItems">
-          <div className="center">• {education.heading}</div>
-
-          {editingIndex == null ? (
-            <div className="center">
-              {index != 0 && index != null ? (
-                <button onClick={() => moveItem(index, -1)}>Up</button>
-              ) : null}
-              {index != educationData.length - 1 && index != null ? (
-                <button onClick={() => moveItem(index, 1)}>Down</button>
-              ) : null}
-              <button onClick={() => handleItemClick(index)}>Edit</button>
-              <button onClick={() => handleDelete(index)}>Delete</button>
-            </div>
-          ) : null}
-        </div>
-      </li>
-    ));
-    return listEducation;
-  }
-
   const content = () => {
     return (
       <div className={`card ${isActive ? "slide-out" : ""}`}>
         <div className="formContainer">
-          <h3 className="marginBottom">
+          <h3 className="marginBottom center head">
             {editingIndex == null ? "Add education" : "Edit education"}
           </h3>
           <form onSubmit={handleSubmit}>
@@ -138,13 +115,13 @@ export default function Education({
             </button>
           </form>
           <div className="marginTop">
-            <ListEducation
+            <ListItem
               itemData={educationData}
               editingIndex={editingIndex}
               moveItem={moveItem}
               handleItemClick={handleItemClick}
               handleDelete={handleDelete}
-            ></ListEducation>
+            ></ListItem>
           </div>
         </div>
       </div>
@@ -153,7 +130,10 @@ export default function Education({
 
   return (
     <section className="section">
-      <h2 onClick={onShow} className={`sectionHeader `}>
+      <h2
+        onClick={onShow}
+        className={`sectionHeader ${isActive ? "activeHeader" : ""} `}
+      >
         Education
       </h2>
       {isActive ? content() : null}

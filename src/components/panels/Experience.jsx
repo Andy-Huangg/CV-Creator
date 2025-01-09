@@ -61,7 +61,7 @@ export default function Experience({
     return (
       <div className={`card ${isActive ? "slide-out" : ""}`}>
         <div className="formContainer">
-          <h3 className="marginBottom">
+          <h3 className="marginBottom center head">
             {editingIndex == null ? "Add experience" : "Edit experience"}
           </h3>
           <form onSubmit={handleSubmit}>
@@ -125,7 +125,10 @@ export default function Experience({
 
   return (
     <section className="section">
-      <h2 onClick={onShow} className={`sectionHeader `}>
+      <h2
+        onClick={onShow}
+        className={`sectionHeader ${isActive ? "activeHeader" : ""} `}
+      >
         Experience
       </h2>
       {isActive ? content() : null}

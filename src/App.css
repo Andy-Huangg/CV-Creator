@@ -19,11 +19,9 @@
 
 @keyframes slideOut {
   from {
-    transform: scaleY(0);
     opacity: 0;
   }
   to {
-    transform: scaleY(1);
     opacity: 1;
   }
 }
@@ -45,7 +43,7 @@
   border-top: none;
 
   overflow: hidden;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 
 .slide-out {
@@ -123,6 +121,8 @@ input[type="url"]:focus {
 }
 
 button {
+  margin-left: 10px;
+  margin-right: 10px;
   padding: 10px 20px;
   background-color: #007bff;
   color: white;
@@ -152,4 +152,20 @@ button:hover {
 li {
   list-style-type: none;
   font-size: large;
+}
+
+.head {
+  font-size: x-large;
+}
+
+.activeHeader {
+  background-color: #007bff;
+}
+
+.delete {
+  background-color: rgb(253, 75, 75);
+}
+
+.delete:hover {
+  background-color: rgb(185, 2, 2);
 }

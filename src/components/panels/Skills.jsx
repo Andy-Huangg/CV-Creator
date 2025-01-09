@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import ListItem from "../ListItem";
 export default function Skills({ isActive, onShow, skillData, updateData }) {
   const [thisSkill, setThisSkill] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
@@ -17,7 +17,7 @@ export default function Skills({ isActive, onShow, skillData, updateData }) {
     } else {
       skillData.push(thisSkill);
     }
-    updateData({ skill: skillData });
+    updateData({ skills: skillData });
     setThisSkill("");
   };
 
@@ -37,46 +37,39 @@ export default function Skills({ isActive, onShow, skillData, updateData }) {
 
   function handleDelete(index) {
     const updatedData = skillData.filter((_, i) => i !== index);
-    updateData({ skill: updatedData });
-  }
-
-  function ListSkill() {
-    const listSkill = skillData.map((skill, index) => (
-      <li key={crypto.randomUUID()}>
-        {skill}
-        {index != 0 && index != null ? (
-          <button onClick={() => moveItem(index, -1)}>Up</button>
-        ) : null}
-        {index != skillData.length - 1 && index != null ? (
-          <button onClick={() => moveItem(index, 1)}>Down</button>
-        ) : null}
-        <button onClick={() => handleItemClick(index)}>Edit</button>
-        <button onClick={() => handleDelete(index)}>Delete</button>
-      </li>
-    ));
-    return listSkill;
+    updateData({ skills: updatedData });
   }
 
   const content = () => {
     return (
-      <div>
-        <h3>Add skill</h3>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Skill:
-            <input
-              type="text"
-              value={thisSkill}
-              onChange={(e) => handleChange(e)}
-            />
-          </label>
-          <button type="submit">
-            {editingIndex !== null ? "Finish Editing" : "Add Skill"}
-          </button>
-        </form>
+      <div className={`card ${isActive ? "slide-out" : ""}`}>
+        <div className="formContainer">
+          <h3 className="marginBottom center head">
+            {editingIndex == null ? "Add skill" : "Edit skill"}
+          </h3>
+          <form onSubmit={handleSubmit}>
+            <div className="formGroup">
+              <label>Skill: </label>
+              <input
+                type="text"
+                value={thisSkill}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
 
-        <div>
-          <ListSkill></ListSkill>
+            <button type="submit">
+              {editingIndex !== null ? "Finish Editing" : "Add Skill"}
+            </button>
+          </form>
+          <div className="marginTop">
+            <ListItem
+              itemData={skillData}
+              editingIndex={editingIndex}
+              moveItem={moveItem}
+              handleItemClick={handleItemClick}
+              handleDelete={handleDelete}
+            ></ListItem>
+          </div>
         </div>
       </div>
     );
@@ -84,7 +77,10 @@ export default function Skills({ isActive, onShow, skillData, updateData }) {
 
   return (
     <section className="section">
-      <h2 onClick={onShow} className={`sectionHeader `}>
+      <h2
+        onClick={onShow}
+        className={`sectionHeader ${isActive ? "activeHeader" : ""}`}
+      >
         Skills
       </h2>
       {isActive ? content() : null}

@@ -9,18 +9,26 @@ export default function ListItem({
 }) {
   return itemData.map((item, index) => (
     <li key={crypto.randomUUID()}>
+      {console.log(item)}
       <div className="listItems">
-        <div className="center">{item.heading}</div>
+        {item.heading == null ? (
+          <div className="center">• {item}</div>
+        ) : (
+          <div className="center">• {item.heading}</div>
+        )}
+
         {editingIndex == null ? (
           <div className="center">
+            <button className="delete" onClick={() => handleDelete(index)}>
+              Delete
+            </button>
+            <button onClick={() => handleItemClick(index)}>Edit</button>
             {index !== 0 && index != null ? (
               <button onClick={() => moveItem(index, -1)}>Up</button>
             ) : null}
             {index !== itemData.length - 1 && index != null ? (
               <button onClick={() => moveItem(index, 1)}>Down</button>
             ) : null}
-            <button onClick={() => handleItemClick(index)}>Edit</button>
-            <button onClick={() => handleDelete(index)}>Delete</button>
           </div>
         ) : null}
       </div>

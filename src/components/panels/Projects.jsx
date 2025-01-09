@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import ListItem from "../ListItem";
 export default function Projects({
   isActive,
   onShow,
@@ -33,7 +33,7 @@ export default function Projects({
     } else {
       projectData.push(thisProject);
     }
-    updateData({ project: projectData });
+    updateData({ projects: projectData });
     setThisProject(initialProjectState);
   };
 
@@ -48,91 +48,84 @@ export default function Projects({
     const updatedData = [...projectData];
     const [movedItem] = updatedData.splice(index, 1);
     updatedData.splice(newIndex, 0, movedItem);
-    updateData({ project: updatedData });
+    updateData({ projects: updatedData });
   }
 
   function handleDelete(index) {
     const updatedData = projectData.filter((_, i) => i !== index);
-    updateData({ project: updatedData });
-  }
-
-  function ListProject() {
-    const listProject = projectData.map((project, index) => (
-      <li key={crypto.randomUUID()}>
-        {project.heading}
-        {index != 0 && index != null ? (
-          <button onClick={() => moveItem(index, -1)}>Up</button>
-        ) : null}
-        {index != projectData.length - 1 && index != null ? (
-          <button onClick={() => moveItem(index, 1)}>Down</button>
-        ) : null}
-        <button onClick={() => handleItemClick(index)}>Edit</button>
-        <button onClick={() => handleDelete(index)}>Delete</button>
-      </li>
-    ));
-    return listProject;
+    updateData({ projects: updatedData });
   }
 
   const content = () => {
     return (
-      <div>
-        <h3>Add project</h3>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Project:
-            <input
-              type="text"
-              value={thisProject.heading}
-              onChange={(e) => handleChange("heading", e)}
-            />
-          </label>
-          <label>
-            Link:
-            <input
-              type="text"
-              value={thisProject.link}
-              onChange={(e) => handleChange("link", e)}
-            />
-          </label>
-          <label>
-            Role:
-            <input
-              type="text"
-              value={thisProject.subHeading}
-              onChange={(e) => handleChange("subHeading", e)}
-            />
-          </label>
-          <label>
-            Technologies:
-            <input
-              type="text"
-              value={thisProject.location}
-              onChange={(e) => handleChange("location", e)}
-            />
-          </label>
-          <label>
-            Date:
-            <input
-              type="text"
-              value={thisProject.date}
-              onChange={(e) => handleChange("date", e)}
-            />
-          </label>
-          <label>
-            Description:
-            <textarea
-              type="text"
-              value={thisProject.description}
-              onChange={(e) => handleChange("description", e)}
-            />
-          </label>
-          <button type="submit">
-            {editingIndex !== null ? "Finish Editing" : "Add Project"}
-          </button>
-        </form>
+      <div className={`card ${isActive ? "slide-out" : ""}`}>
+        <div className="formContainer">
+          <h3 className="marginBottom center head">
+            {editingIndex == null ? "Add project" : "Edit project"}
+          </h3>
+          <form onSubmit={handleSubmit}>
+            <div className="formGroup">
+              <label>Project:</label>
+              <input
+                type="text"
+                value={thisProject.heading}
+                onChange={(e) => handleChange("heading", e)}
+              />
+            </div>
+            <div className="formGroup">
+              <label>Link:</label>
+              <input
+                type="text"
+                value={thisProject.link}
+                onChange={(e) => handleChange("link", e)}
+              />
+            </div>
+            <div className="formGroup">
+              <label>Role:</label>
+              <input
+                type="text"
+                value={thisProject.subHeading}
+                onChange={(e) => handleChange("subHeading", e)}
+              />
+            </div>
+            <div className="formGroup">
+              <label>Technologies:</label>
+              <input
+                type="text"
+                value={thisProject.location}
+                onChange={(e) => handleChange("location", e)}
+              />
+            </div>
+            <div className="formGroup">
+              <label>Date:</label>
+              <input
+                type="text"
+                value={thisProject.date}
+                onChange={(e) => handleChange("date", e)}
+              />
+            </div>
+            <div className="formGroup">
+              <label>Description:</label>
+              <textarea
+                type="text"
+                value={thisProject.description}
+                onChange={(e) => handleChange("description", e)}
+              />
+            </div>
+            <button type="submit">
+              {editingIndex !== null ? "Finish Editing" : "Add Project"}
+            </button>
+          </form>
+        </div>
 
-        <div>
-          <ListProject></ListProject>
+        <div className="marginTop">
+          <ListItem
+            itemData={projectData}
+            editingIndex={editingIndex}
+            moveItem={moveItem}
+            handleItemClick={handleItemClick}
+            handleDelete={handleDelete}
+          ></ListItem>
         </div>
       </div>
     );
@@ -140,7 +133,10 @@ export default function Projects({
 
   return (
     <section className="section">
-      <h2 onClick={onShow} className={`sectionHeader `}>
+      <h2
+        onClick={onShow}
+        className={`sectionHeader ${isActive ? "activeHeader" : ""}`}
+      >
         Projects
       </h2>
       {isActive ? content() : null}

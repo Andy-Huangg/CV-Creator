@@ -36,6 +36,9 @@ export default function PersonalInformation({ isActive, onShow, updateData }) {
       <div className={`card ${isActive ? "slide-out" : ""}`}>
         <div className="formContainer">
           <form>
+            <div className="marginBottom center head">
+              Add Personal Information
+            </div>
             <div className="formGroup">
               <label className="center">Name:</label>
               <input
@@ -86,7 +89,10 @@ export default function PersonalInformation({ isActive, onShow, updateData }) {
   };
   return (
     <section className="section">
-      <h2 onClick={onShow} className={`sectionHeader `}>
+      <h2
+        onClick={onShow}
+        className={`sectionHeader ${isActive ? "activeHeader" : ""}`}
+      >
         Personal Information
       </h2>
 

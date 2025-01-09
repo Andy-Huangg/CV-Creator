@@ -146,7 +146,7 @@ export default function PDFFile({ data, sectionOrder }) {
                 {data.referees.map((edu) => {
                   return (
                     <View key={crypto.randomUUID()} style={styles.referee}>
-                      <Text style={styles.mainHeading}>{edu.name}</Text>
+                      <Text style={styles.mainHeading}>{edu.heading}</Text>
                       <Text>{edu.title}</Text>
                       <Text>{edu.company}</Text>
                       <Text>{edu.phone}</Text>
